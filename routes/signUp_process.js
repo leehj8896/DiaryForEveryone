@@ -1,4 +1,6 @@
 var qs = require('querystring');
+var crypto = require('crypto');
+const models = require("../models");
 var conn = require('../db_conn')();
 
 module.exports = (req, res) => {
@@ -8,12 +10,29 @@ module.exports = (req, res) => {
   });
   req.on('end', function(){
     var data = qs.parse(body);
-    conn.query(
-      `INSERT INTO posts (email, password, nickname)
-      VALUES('${data.email}', '${data.password}', '${data.nickname}')
-      `, 
-      (err, result)=>{
-        return res.redirect(`/`);
+
+    //salt: 현재 시간에 랜덤 값을 곱해 문자열 생성
+    var salt = Math.round((new Date().valueOf() * Math.random())) + "";
+    var hashedPassword = crypto.createHash("sha512").update(data.password + salt).digest("hex");
+
+    models.user.create({
+      email: data.email,
+      password: hashedPassword,
+      nickname: data.nickname,
+      salt: salt
+    }).then((result)=>{
+      res.redirect(`/`);
+    }).catch((err)=>{
+      console.log(err);
     });
+    // conn.query(
+    //   `INSERT INTO users (email, password, nickname, salt)
+    //   VALUES('${data.email}', '${hashedPassword}', '${data.nickname}', '${salt}')
+    //   `, 
+    //   (err, result)=>{
+    //     if(err)
+    //       console.log(err);
+    //     return res.redirect(`/`);
+    // });
   });
 };
