@@ -1,0 +1,19 @@
+html
+    head
+        title 모두의 일기장
+    body
+        h1 
+            a(href='/') 모두의 일기장
+            button(onclick="location.href='/signUp'") 회원가입
+        table(border='1')
+            tr
+                th 날짜
+                th 제목
+                th 작성자
+
+            each post in posts
+                tr(onclick=`location.href='/detail/${post.id}'`)
+                    td=post.date
+                    td=post.title
+                    td=post.user_id
+        button(onclick="location.href='/create'") 글쓰기

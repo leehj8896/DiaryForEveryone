@@ -1,0 +1,15 @@
+html
+    head
+        title 모두의 일기장
+    body
+        h1 
+            a(href='/') 모두의 일기장
+        form(action='/join_process', method='post')
+            p
+                input(type="text", name="email", placeholder="이메일")
+            p
+                input(type="text", name="password", placeholder="비밀번호")
+            p
+                input(type="text", name="nickname", placeholder="별명")
+            p
+                input(type='submit', value='회원가입')
