@@ -20,6 +20,7 @@ module.exports = (req, res) => {
         var hashedPassword = crypto.createHash("sha512").update(data.password + result.get('salt')).digest("hex");
         if(result.get('password') == hashedPassword){
             console.log('비밀번호 일치');
+            req.session.email = data.email;
             // res.cookie('user', data.email, {
             //     expires: new Date(Date.now() + 3600)
             // });

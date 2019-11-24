@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 //var cookieParser = require('cookie-parser');
 const url = require('url');
 var mysql = require('mysql'); 
@@ -17,6 +18,15 @@ models.sequelize.sync().then( ()=>{
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+app.use(session({
+  key: 'sid',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60 * 60 * 1000  //1hour
+  }
+}));
 //app.use(cookieParser());
 
 var indexRouter = require('./routes/index.js');
