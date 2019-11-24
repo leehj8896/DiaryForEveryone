@@ -1,6 +1,5 @@
 const express = require('express');
 const session = require('express-session');
-//var cookieParser = require('cookie-parser');
 const url = require('url');
 var mysql = require('mysql'); 
 var qs = require('querystring');
@@ -18,6 +17,7 @@ models.sequelize.sync().then( ()=>{
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
 app.use(session({
   key: 'sid',
   secret: 'secret',
@@ -27,7 +27,10 @@ app.use(session({
     maxAge: 60 * 60 * 1000  //1hour
   }
 }));
-//app.use(cookieParser());
+app.use((req, res, next)=>{
+  res.locals.session = req.session;
+  next();
+});
 
 var indexRouter = require('./routes/index.js');
 var detailRouter = require('./routes/detail.js');
@@ -40,6 +43,7 @@ var joinRouter = require('./routes/join.js');
 var jpRouter = require('./routes/join_process.js');
 var loginRouter = require('./routes/login.js');
 var lpRouter = require('./routes/login_process.js');
+var logoutRouter = require('./routes/logout.js');
 
 app.get('/', indexRouter);
 app.get('/detail/:id', detailRouter);
@@ -52,6 +56,7 @@ app.get('/join', joinRouter);
 app.post('/join_process', jpRouter);
 app.get('/login', loginRouter);
 app.post('/login_process', lpRouter);
+app.get('/logout', logoutRouter);
 
 app.listen(3000, ()=> {
   console.log('Example app listening on port 3000!');

@@ -4,11 +4,12 @@ html
     body
         h1 
             a(href='/') 모두의 일기장
-            if(session)
+            if session.nickname
+                span=session.nickname
+                button(onclick="location.href='/logout'") 로그아웃
+            else
                 button(onclick="location.href='/join'") 회원가입
                 button(onclick="location.href='/login'") 로그인
-            else
-                button(onclick="location.href='/logout'") 로그아웃
         table(border='1')
             tr
                 th 날짜
