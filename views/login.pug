@@ -4,6 +4,10 @@ html
     body
         h1 
             a(href='/') 모두의 일기장
+        h2
+            button(onclick="location.href='/join'") 회원가입
+            button(onclick="location.href='/login'") 로그인
+        
         form(action='/login_process', method='post')
             p
                 input(type="text", name="email", placeholder="이메일")

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     post.belongsTo(models.user, {
       foreignKey: 'userId'
     });
+    post.hasMany(models.reply);
   };
   return post;
 };

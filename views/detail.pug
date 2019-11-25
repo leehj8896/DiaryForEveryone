@@ -4,18 +4,44 @@ html
     body
         h1  
             a(href='/') 모두의 일기장
+        h2
             if session.nickname
                 span=session.nickname
                 button(onclick="location.href='/logout'") 로그아웃
             else
                 button(onclick="location.href='/join'") 회원가입
                 button(onclick="location.href='/login'") 로그인
-        table(border='1')
+        table(border='5')
             tr
-                th=post.title
+                th 제목
+                td=post.title
+            tr
+                th 작성자
                 td=post.user.nickname
             tr
+                th 내용
                 td=post.description
         if session.nickname == post.user.nickname
             button(onclick=`location.href='/update/${post.id}'`) 수정
             button(onclick=`location.href='/delete_process/${post.id}'`) 삭제
+        table(border='1')
+            tr
+                th 작성자
+                th 댓글
+            each reply in replies
+                tr
+                    td=reply.user.nickname
+                    td=reply.content
+                    if reply.user.id == session.userId
+                        td
+                            button(onclick=`location.href='/deleteReply/${post.id}/${reply.id}'`) 삭제
+            if session.nickname
+                form(action='/reply_process', method='post')
+                    input(type='hidden', name='postId', value=`${post.id}`)
+                    tr
+                        td=session.nickname
+                        td
+                            input(type='text', name='reply', placeholder='댓글')
+                        td
+                            input(type='submit', value='등록')
+

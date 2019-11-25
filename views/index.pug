@@ -4,6 +4,7 @@ html
     body
         h1 
             a(href='/') 모두의 일기장
+        h2
             if session.nickname
                 span=session.nickname 
                 button(onclick="location.href='/logout'") 로그아웃

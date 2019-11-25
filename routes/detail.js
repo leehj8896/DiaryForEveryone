@@ -9,8 +9,20 @@ module.exports = (req, res) => {
             model: models.user
         }
     }).then((post)=>{
-        return res.render('detail.pug', {
-            post: post
+
+        models.reply.findAll({
+            where: {
+                postId: post.id
+            },
+            include: {
+                model: models.user
+            }
+        }).then((replies)=>{
+            console.log(replies);
+            return res.render('detail.pug', {
+                post: post,
+                replies: replies
+            });
         });
     });
 };

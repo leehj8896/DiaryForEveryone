@@ -44,6 +44,8 @@ var jpRouter = require('./routes/join_process.js');
 var loginRouter = require('./routes/login.js');
 var lpRouter = require('./routes/login_process.js');
 var logoutRouter = require('./routes/logout.js');
+var replyRouter = require('./routes/reply.js');
+var drRouter = require('./routes/deleteReply.js');
 
 app.get('/', indexRouter);
 app.get('/detail/:id', detailRouter);
@@ -57,6 +59,8 @@ app.post('/join_process', jpRouter);
 app.get('/login', loginRouter);
 app.post('/login_process', lpRouter);
 app.get('/logout', logoutRouter);
+app.post('/reply_process', replyRouter);
+app.get('/deleteReply/:postId/:replyId', drRouter);
 
 app.listen(3000, ()=> {
   console.log('Example app listening on port 3000!');
