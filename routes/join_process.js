@@ -1,7 +1,6 @@
 var qs = require('querystring');
 var crypto = require('crypto');
 const models = require("../models");
-var conn = require('../db_conn')();
 
 module.exports = (req, res) => {
   var body = '';

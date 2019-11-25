@@ -4,12 +4,17 @@ html
     body
         h1  
             a(href='/') 모두의 일기장
+            if session.nickname
+                span=session.nickname
+                button(onclick="location.href='/logout'") 로그아웃
+            else
+                button(onclick="location.href='/join'") 회원가입
+                button(onclick="location.href='/login'") 로그인
         table(border='1')
             tr
-                th 제목
-                td=post[0].title
+                th=post[0].title
             tr
-                th 내용
                 td=post[0].description
-        button(onclick=`location.href='/update/${post[0].id}'`) 수정
-        button(onclick=`location.href='/delete_process/${post[0].id}'`) 삭제
+        if session.nickname
+            button(onclick=`location.href='/update/${post[0].id}'`) 수정
+            button(onclick=`location.href='/delete_process/${post[0].id}'`) 삭제

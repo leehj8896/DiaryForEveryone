@@ -18,7 +18,8 @@ html
 
             each post in posts
                 tr(onclick=`location.href='/detail/${post.id}'`)
-                    td=post.date
+                    td=post.createdAt
                     td=post.title
-                    td=post.user_id
-        button(onclick="location.href='/create'") 글쓰기
+                    td=post.user.nickname
+        if session.nickname
+            button(onclick="location.href='/create'") 글쓰기

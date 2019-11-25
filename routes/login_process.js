@@ -1,7 +1,6 @@
 var qs = require('querystring');
 var crypto = require('crypto');
 const models = require("../models");
-var conn = require('../db_conn')();
 
 module.exports = (req, res) => {
   var body = '';
@@ -12,7 +11,8 @@ module.exports = (req, res) => {
     var data = qs.parse(body);
 
     models.user.findOne({
-        whele: {
+        //오타있는데 왜 되지? 
+        where: {
             email: data.email
         }
     }).then((result)=>{
@@ -20,6 +20,7 @@ module.exports = (req, res) => {
         var hashedPassword = crypto.createHash("sha512").update(data.password + result.get('salt')).digest("hex");
         if(result.get('password') == hashedPassword){
             console.log('비밀번호 일치');
+            req.session.userId = result.get('id');
             req.session.nickname = result.get('nickname');
             res.redirect('/');
         }
