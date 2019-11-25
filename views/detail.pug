@@ -12,9 +12,10 @@ html
                 button(onclick="location.href='/login'") 로그인
         table(border='1')
             tr
-                th=post[0].title
+                th=post.title
+                td=post.user.nickname
             tr
-                td=post[0].description
-        if session.nickname
-            button(onclick=`location.href='/update/${post[0].id}'`) 수정
-            button(onclick=`location.href='/delete_process/${post[0].id}'`) 삭제
+                td=post.description
+        if session.nickname == post.user.nickname
+            button(onclick=`location.href='/update/${post.id}'`) 수정
+            button(onclick=`location.href='/delete_process/${post.id}'`) 삭제

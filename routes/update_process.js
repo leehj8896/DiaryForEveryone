@@ -1,5 +1,5 @@
 var qs = require('querystring');
-var conn = require('../db_conn')();
+const models = require("../models");
 
 module.exports = (req, res)=>{
     var body = '';
@@ -8,13 +8,17 @@ module.exports = (req, res)=>{
     });
     req.on('end', function(){
       var data = qs.parse(body);
-      conn.query(
-        `UPDATE posts
-        SET title='${data.title}', description='${data.description}'
-        WHERE id=${data.id}
-        `, 
-        (err, result)=>{
-          return res.redirect(`/detail/${data.id}`);
+
+      models.post.update({
+        title: data.title,
+        description: data.description
+      },{
+        where: {
+          id: data.id
+        }
+      }).then((post)=>{
+        console.log(post);
+        return res.redirect(`/detail/${data.id}`);
       });
     });
 };

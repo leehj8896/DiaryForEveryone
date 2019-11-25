@@ -4,11 +4,14 @@ html
     body
         h1
             a(href='/') 모두의 일기장
+            if session.nickname
+                span=session.nickname
+                button(onclick="location.href='/logout'") 로그아웃
         form(action='/update_process', method='post')
-            input(type='hidden', name='id', value=`${post[0].id}`)
+            input(type='hidden', name='id', value=`${post.id}`)
             p
-                input(type="text", name="title", placeholder="제목", value=`${post[0].title}`)
+                input(type="text", name="title", placeholder="제목", value=`${post.title}`)
             p
-                textarea(name="description", placeholder='내용', cols="30", rows="10")=post[0].description
+                textarea(name="description", placeholder='내용', cols="30", rows="10")=post.description
             p
                 input(type='submit', value='수정')

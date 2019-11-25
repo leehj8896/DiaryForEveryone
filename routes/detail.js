@@ -1,13 +1,16 @@
-var conn = require('../db_conn')();
+const models = require("../models");
 
 module.exports = (req, res) => {
-    conn.query(
-        `SELECT * FROM posts WHERE id=${req.params.id}`, 
-        (err, post)=>{
-            if(err)
-                console.log(err);
-            return res.render('detail.pug', {
-                post: post
-            });
+    models.post.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: {
+            model: models.user
+        }
+    }).then((post)=>{
+        return res.render('detail.pug', {
+            post: post
+        });
     });
 };

@@ -18,12 +18,5 @@ module.exports = (req, res) => {
     }).catch((err)=>{
       console.log(err);
     });
-    // conn.query(
-    //   `INSERT INTO posts (title, description)
-    //   VALUES('${data.title}', '${data.description}')
-    //   `, 
-    //   (err, result)=>{
-    //     return res.redirect(`/detail/${result.insertId}`);
-    // });
   });
 };

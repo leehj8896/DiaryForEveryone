@@ -1,9 +1,9 @@
-var conn = require('../db_conn.js')();
+const models = require("../models");
 
 module.exports = (req, res)=>{
-    conn.query(
-        `DELETE FROM posts WHERE id=${req.params.id}`, 
-        (err, post)=>{
-            return res.redirect('/');
+    models.post.destroy({
+        where: {id: req.params.id}
+    }).then(()=>{
+        return res.redirect('/');
     });
 }

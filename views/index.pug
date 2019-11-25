@@ -5,7 +5,7 @@ html
         h1 
             a(href='/') 모두의 일기장
             if session.nickname
-                span=session.nickname
+                span=session.nickname 
                 button(onclick="location.href='/logout'") 로그아웃
             else
                 button(onclick="location.href='/join'") 회원가입
