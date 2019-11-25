@@ -11,7 +11,6 @@ module.exports = (req, res) => {
     var data = qs.parse(body);
 
     models.user.findOne({
-        //오타있는데 왜 되지? 
         where: {
             email: data.email
         }
