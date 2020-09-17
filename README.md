@@ -1,1 +1,10 @@
-# DiaryForEveryone
+![슬라이드1](https://user-images.githubusercontent.com/28583563/93483614-f3639d80-f93b-11ea-85b0-11a99d81fadf.PNG)
+![슬라이드2](https://user-images.githubusercontent.com/28583563/93483839-34f44880-f93c-11ea-8b5d-4759bdbcc69f.PNG)
+![슬라이드3](https://user-images.githubusercontent.com/28583563/93483899-46d5eb80-f93c-11ea-95d1-e45aa71c9553.PNG)
+![슬라이드4](https://user-images.githubusercontent.com/28583563/93483919-4b020900-f93c-11ea-89d0-ee53e68427a2.PNG)
+![슬라이드5](https://user-images.githubusercontent.com/28583563/93483942-4e959000-f93c-11ea-8d3d-743aa9d1e2c1.PNG)
+![슬라이드14](https://user-images.githubusercontent.com/28583563/93483993-5bb27f00-f93c-11ea-9ab5-20c346348161.PNG)
+![슬라이드15](https://user-images.githubusercontent.com/28583563/93484011-61a86000-f93c-11ea-9f2c-b4502df9a320.PNG)
+![슬라이드17](https://user-images.githubusercontent.com/28583563/93484101-7dac0180-f93c-11ea-9ee0-94d562e8b01f.PNG)
+![슬라이드18](https://user-images.githubusercontent.com/28583563/93484138-87356980-f93c-11ea-9b85-005426dd4eda.PNG)
+![슬라이드19](https://user-images.githubusercontent.com/28583563/93484145-88ff2d00-f93c-11ea-8e56-b344cc19a06b.PNG)
